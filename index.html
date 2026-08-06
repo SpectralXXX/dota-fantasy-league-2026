@@ -353,7 +353,7 @@ details.disc[open] .disc-chev{transform:translateY(1px) rotate(-135deg)}
 @media(max-width:760px){.primer-steps{grid-template-columns:1fr}}
 .primer-steps > div{font-size:12.5px;color:var(--muted);line-height:1.5;
   padding-left:31px;position:relative}
-.primer-steps > div > span{position:absolute;left:0;top:0;width:23px;height:23px;border-radius:5px;
+.primer-steps > div > span:first-child{position:absolute;left:0;top:0;width:23px;height:23px;border-radius:5px;
   display:grid;place-items:center;background:linear-gradient(150deg,var(--vio2),#5b3fae);
   color:#fff;font:700 12px var(--mono)}
 
@@ -559,6 +559,28 @@ details.disc[open] .disc-chev{transform:translateY(1px) rotate(-135deg)}
 .chead::after{content:"";position:absolute;left:0;bottom:-1px;width:34px;height:2px;
   background:linear-gradient(90deg,var(--vio),transparent);box-shadow:0 0 10px rgba(124,92,214,.5)}
 footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--dim);font-size:12px;line-height:1.6}
+.seo-block{border-top:1px solid var(--line);margin-top:32px;padding:24px 0;background:linear-gradient(180deg,rgba(124,92,214,.02),transparent)}
+.seo-details{color:var(--muted);font-size:13.5px;line-height:1.6}
+.seo-details summary{cursor:pointer;padding:8px 12px;color:var(--dim);font-size:12.5px;letter-spacing:.02em;
+  border:1px solid var(--line2);border-radius:6px;background:var(--inset);width:fit-content;
+  transition:color .12s,border-color .12s;list-style:none}
+.seo-details summary::-webkit-details-marker{display:none}
+.seo-details summary::before{content:"▸ ";display:inline-block;transition:transform .18s;color:var(--vio)}
+.seo-details[open] summary::before{transform:rotate(90deg)}
+.seo-details summary:hover{color:var(--text);border-color:var(--vio-dim)}
+.seo-visible{max-width:76ch;margin-bottom:22px;color:var(--muted);font-size:13.5px;line-height:1.6}
+.seo-visible h2{font-size:15px;color:var(--text);margin:0 0 6px;font-weight:600;letter-spacing:-.005em}
+.seo-visible h2 + p{margin:0 0 16px}
+.seo-visible h2 ~ h2{margin-top:14px}
+.seo-body{padding:16px 4px 0;max-width:76ch}
+.seo-body h2{font-size:15px;color:var(--text);margin:22px 0 8px;font-weight:600;letter-spacing:-.005em}
+.seo-body h2:first-child{margin-top:8px}
+.seo-body p{margin:0 0 8px}
+.seo-faq{margin:0}
+.seo-faq dt{color:var(--text);font-weight:600;margin:14px 0 4px;font-size:13.5px}
+.seo-faq dd{margin:0 0 4px;color:var(--muted)}
+.seo-note{margin-top:22px !important;padding-top:14px;border-top:1px dashed var(--line);
+  color:var(--dim);font-size:12px;font-style:italic}
 </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -784,6 +806,48 @@ footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--dim);fon
   </div>
 
 </div>
+
+<section class="seo-block"><div class="wrap">
+  <div class="seo-visible">
+    <h2 data-i18n="seo_h_about">Что такое SpectralDotaFantasy</h2>
+    <p data-i18n="seo_p_about">Калькулятор фэнтези-лиги The International 2026 — инструмент для игроков компендиума Dota 2. Считает ожидаемые фэнтези-очки для любой связки игроков по официальным правилам Valve, помогает выбрать эмблемы, разряды и свойства для трёх знамён (Основа, Центр, Поддержка) и подбирает тренерский титул с учётом реальной статистики матчей всего сезона 2026.</p>
+
+    <h2 data-i18n="seo_h_teams">Команды на The International 2026</h2>
+    <p data-i18n="seo_p_teams">На TI 2026 (13-23 августа, Шанхай) играют 16 команд, прошедших через прямые приглашения и региональные квалификации: Team Falcons, Team Liquid, Team Spirit, Iron Wings, BoomBoys, Aurora Gaming, GamerLegion, HULIGANI, LGD Gaming, Nigma Galaxy, OG, TEAM VISION, Team Resilience, Team Yandex, Vici Gaming, Xtreme Gaming. Формат: групповая стадия 13-16 августа — Швейцарка из 16 команд, все матчи Bo3. Топ-3 напрямую в плей-офф в верхнюю сетку, места 4-13 играют отборочный раунд, оттуда ещё 5 команд проходят дальше. Плей-офф 20-23 августа — double elimination для 8 команд, все Bo3, гранд-финал Bo5.</p>
+  </div>
+
+  <details class="seo-details">
+    <summary><span data-i18n="seo_open">Подробнее: как считаются очки, стратегия жетонов, FAQ</span></summary>
+    <div class="seo-body">
+      <h2 data-i18n="seo_h_scoring">Как считаются очки фэнтези</h2>
+      <p data-i18n="seo_p_scoring">Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за всю групповую стадию. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирическая (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).</p>
+
+      <h2 data-i18n="seo_h_rerolls">Помощник по замене жетонов</h2>
+      <p data-i18n="seo_p_rerolls">На групповой этап TI даётся 40 жетонов замены, ещё 30 добавляется в плей-офф. Каждый жетон меняет одну характеристику эмблемы (показатель, разряд или свойство), либо обновляет всю подборку из трёх предложенных действий («Заменить действия»). Наш помощник считает ожидаемую выгоду каждой замены с учётом остатка жетонов и советует, что применить, а что сохранить. Порядок трат: сначала докрути показатели до нужных, потом свойства, разряды — в самом конце. Дорогие показатели ставь в середину знамени.</p>
+
+      <h2 data-i18n="seo_h_data">Источник данных</h2>
+      <p data-i18n="seo_p_data">Статистика по 80 игрокам TI (по 5 на команду × 16 команд) собирается из открытых данных OpenDota по 19 турнирам сезона 2026: ESL One Birmingham, PGL Wallachia S7 и S8, DreamLeague S28 и S29, EWC 2026, BLAST Slam VI и VII, FISSURE Universe 8, 1win Essence I и II, PREMIER SERIES, Games of the Future 2026, TI-квалификации Европы, Северной и Южной Америки, Китая и Юго-Восточной Азии. Коэффициенты Valve сверены с внутриигровым глоссарием компендиума TI 2026. Обновляется автоматически каждый день.</p>
+
+      <h2 data-i18n="seo_h_faq">Часто задаваемые вопросы</h2>
+      <dl class="seo-faq">
+        <dt data-i18n="seo_faq_q1">Как выбрать оптимальные эмблемы для роли?</dt>
+        <dd data-i18n="seo_faq_a1">Открой вкладку «Ценность эмблем» — там показано, сколько очков в среднем приносит каждый показатель на выбранной роли по данным всего сезона. Выбирай верхние в списке. Дорогие показатели ставь в середину знамени — у центральной эмблемы 2 соседа, значит эффекты Благотворной и Вампирической усиливаются вдвое.</dd>
+        <dt data-i18n="seo_faq_q2">В каком порядке тратить жетоны замены?</dt>
+        <dd data-i18n="seo_faq_a2">Сначала докрути показатели (замена показателя может занять ~5 роллов чтобы найти нужный). Потом настраивай свойства — они дают до +60% множителя. Разряды крутить в последнюю очередь: они меняются легче всего, и рано вкладываться в них смысла нет — если решишь потом сменить показатель, разряд обнулится.</dd>
+        <dt data-i18n="seo_faq_q3">Какой тренерский титул выбрать?</dt>
+        <dd data-i18n="seo_faq_a3">Тул сортирует все префиксы (Багровый, Королевский, Элементальный и т.д.) и суффиксы (Аутсайдер, Творец победы, Везунчик и т.д.) по ожидаемому вкладу в очки исходя из твоего конкретного состава игроков и их герой-пула. Верхние в списке — самые выгодные для тебя. Титул меняется бесплатно, без жетонов замены.</dd>
+        <dt data-i18n="seo_faq_q4">Стоит ли жать «Заменить действия»?</dt>
+        <dd data-i18n="seo_faq_a4">Помощник по заменам считает шанс получить полезное действие в новой подборке и сравнивает с текущими вариантами. Если все текущие 3 в минус — почти всегда выгоднее жать «Заменить действия» (жетон потрачен, но хуже знамени не сделаешь). При явно положительном текущем варианте — применяй его, не рискуй.</dd>
+        <dt data-i18n="seo_faq_q5">Данные обновляются в реальном времени?</dt>
+        <dd data-i18n="seo_faq_a5">Обновление раз в день, ночью — подтягиваются свежие матчи с OpenDota. Во время TI (13-23 августа) статистика будет актуальной с задержкой ~24 часа. Все коэффициенты Valve зафиксированы и проверены — они не меняются в течение TI.</dd>
+        <dt data-i18n="seo_faq_q6">Работает ли калькулятор офлайн?</dt>
+        <dd data-i18n="seo_faq_a6">Да, весь калькулятор — один HTML-файл со встроенными данными. Открывается двойным кликом, работает без интернета после первой загрузки. Все расчёты локально в браузере, никакие данные не отправляются на сервер.</dd>
+      </dl>
+
+      <p class="seo-note" data-i18n="seo_credits">SpectralDotaFantasy · калькулятор фэнтези Dota 2 · The International 2026 · бесплатно и без регистрации</p>
+    </div>
+  </details>
+</div></section>
 
 <footer><div class="wrap" id="foot"></div></footer>
 
@@ -1165,6 +1229,31 @@ const I18N = {
     apply_tip_short: "Transfer all three banners to the Roster tab.",
     donate: "Donate", other_projects: "Other projects",
     advanced_h: "Advanced settings",
+    seo_open: "About the calculator — more details",
+    seo_h_about: "What SpectralDotaFantasy is",
+    seo_p_about: "A Fantasy League calculator for The International 2026 — a tool for players of the Dota 2 Compendium. Computes expected fantasy points for any pairing of players by the official Valve rules, helps you pick emblems, qualities and traits for your three War Banners (Core, Mid, Support), and picks a Coaching Title using real match statistics across the entire 2026 season.",
+    seo_h_scoring: "How fantasy points are scored",
+    seo_p_scoring: "Score per map = sum of (base points for a stat × emblem percent). A two-player role (Core, Support) — the average of their individual scores. Match score = sum of the two best maps of the series — matches the Bo3 format of the TI 2026 group stage exactly. Stage score = the best match of the role across the group stage. Emblem quality gives from +10% (Tier I) to +150% (Tier V) to base points; trait adds a conditional effect: Fractal (+60% self if all qualities differ), Benevolent (+20% to neighbors), Vampiric (+50% self, −10% to neighbors), Unique (+30% if it's the only Unique), Friendly (+50% if there are at least 3 Friendly on the banner).",
+    seo_h_rerolls: "Roll tokens assistant",
+    seo_p_rerolls: "You get 40 roll tokens for the group stage of TI, plus 30 more for the playoffs. Each token changes one property of an emblem (stat, quality or trait), or Reroll Options refreshes all three offered actions. Our assistant computes the expected value of each replacement given your remaining tokens and tells you what to apply and what to save. Spending order: fix the stats first (a stat replacement may take ~5 rolls to hit what you want), then traits, then qualities last. Put the expensive stats in the middle of the banner.",
+    seo_h_teams: "Teams at The International 2026",
+    seo_p_teams: "The International 2026 (August 13-23, Shanghai) features 16 teams, qualified through direct invites and regional qualifiers: Team Falcons, Team Liquid, Team Spirit, Iron Wings, BoomBoys, Aurora Gaming, GamerLegion, HULIGANI, LGD Gaming, Nigma Galaxy, OG, TEAM VISION, Team Resilience, Team Yandex, Vici Gaming, Xtreme Gaming. Format: group stage August 13-16 is a Swiss system of 16 teams, all matches Bo3. Top 3 advance directly to playoffs upper bracket, teams 4-13 play a qualifier round from which 5 more advance. Playoffs August 20-23 — double elimination for 8 teams, all Bo3, grand final Bo5.",
+    seo_h_data: "Data source",
+    seo_p_data: "Statistics on all 80 TI players (5 per team × 16 teams) is collected from OpenDota's public data across 19 tournaments of the 2026 season: ESL One Birmingham, PGL Wallachia S7 and S8, DreamLeague S28 and S29, EWC 2026, BLAST Slam VI and VII, FISSURE Universe 8, 1win Essence I and II, PREMIER SERIES, Games of the Future 2026, TI Qualifiers for Europe, North and South America, China and Southeast Asia. Valve coefficients are matched to the in-game TI 2026 Compendium glossary. Updated automatically every day.",
+    seo_h_faq: "Frequently asked questions",
+    seo_faq_q1: "How do I pick optimal emblems for a role?",
+    seo_faq_a1: "Open the \"Emblem Value\" tab — it shows how many points each stat brings on average for the chosen role across the whole season. Pick the top ones. Put the expensive stats in the middle of the banner — the middle emblem has 2 neighbors, so Benevolent and Vampiric effects double their impact.",
+    seo_faq_q2: "In what order should I spend roll tokens?",
+    seo_faq_a2: "First tune your stats (a stat reroll may take ~5 rolls to find what you want). Then set traits — they give up to +60% multiplier. Reroll qualities last: they're the easiest to change, and there's no point locking them in early — if you later change the stat, the quality reset costs you again.",
+    seo_faq_q3: "Which coaching title should I pick?",
+    seo_faq_a3: "The tool sorts all prefixes (Crimson, Royal, Elemental, etc.) and suffixes (Underdog, Clutch, Lucky, etc.) by their expected contribution to your score given your specific roster and their hero pool. Top of the list = best for you. Titles change for free, no tokens needed.",
+    seo_faq_q4: "Should I press Reroll Options?",
+    seo_faq_a4: "The Roll Assistant computes the chance of getting a useful option in the new offer and compares to the current three. If all current 3 are in the negative — reroll is almost always worth it (the token is spent, but you don't hurt the banner). When a current option is clearly positive — apply it, don't gamble.",
+    seo_faq_q5: "Is the data updated in real time?",
+    seo_faq_a5: "Updated once a day, at night — fresh matches are pulled from OpenDota. During TI (August 13-23) statistics will be current with a ~24 hour delay. All Valve coefficients are fixed and verified — they don't change during TI.",
+    seo_faq_q6: "Does the calculator work offline?",
+    seo_faq_a6: "Yes, the whole calculator is a single HTML file with embedded data. Opens by a double-click, works without internet after the initial load. All computations are local in the browser, no data is sent to any server.",
+    seo_credits: "SpectralDotaFantasy · Fantasy Dota 2 calculator · The International 2026 · free and no signup",
   },
   ru: {
     doc_title: "Калькулятор фэнтези Dota 2 · The International 2026 — SpectralDotaFantasy",
@@ -1287,6 +1376,31 @@ const I18N = {
     apply_tip_short: "Перенести все три знамени на вкладку «Состав».",
     donate: "Поддержать", other_projects: "Другие проекты",
     advanced_h: "Расширенные настройки",
+    seo_open: "О калькуляторе фэнтези The International 2026 — подробнее",
+    seo_h_about: "Что такое SpectralDotaFantasy",
+    seo_p_about: "Калькулятор фэнтези-лиги The International 2026 — инструмент для игроков компендиума Dota 2. Считает ожидаемые фэнтези-очки для любой связки игроков по официальным правилам Valve, помогает выбрать эмблемы, разряды и свойства для трёх знамён (Основа, Центр, Поддержка) и подбирает тренерский титул с учётом реальной статистики матчей всего сезона 2026.",
+    seo_h_scoring: "Как считаются очки фэнтези",
+    seo_p_scoring: "Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за всю групповую стадию. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирическая (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).",
+    seo_h_rerolls: "Помощник по замене жетонов",
+    seo_p_rerolls: "На групповой этап TI даётся 40 жетонов замены, ещё 30 добавляется в плей-офф. Каждый жетон меняет одну характеристику эмблемы (показатель, разряд или свойство), либо обновляет всю подборку из трёх предложенных действий («Заменить действия»). Наш помощник считает ожидаемую выгоду каждой замены с учётом остатка жетонов и советует, что применить, а что сохранить. Порядок трат: сначала докрути показатели до нужных, потом свойства, разряды — в самом конце. Дорогие показатели ставь в середину знамени.",
+    seo_h_teams: "Команды на The International 2026",
+    seo_p_teams: "На TI 2026 (13-23 августа, Шанхай) играют 16 команд, прошедших через прямые приглашения и региональные квалификации: Team Falcons, Team Liquid, Team Spirit, Iron Wings, BoomBoys, Aurora Gaming, GamerLegion, HULIGANI, LGD Gaming, Nigma Galaxy, OG, TEAM VISION, Team Resilience, Team Yandex, Vici Gaming, Xtreme Gaming. Формат: групповая стадия 13-16 августа — Швейцарка из 16 команд, все матчи Bo3. Топ-3 напрямую в плей-офф в верхнюю сетку, места 4-13 играют отборочный раунд, оттуда ещё 5 команд проходят дальше. Плей-офф 20-23 августа — double elimination для 8 команд, все Bo3, гранд-финал Bo5.",
+    seo_h_data: "Источник данных",
+    seo_p_data: "Статистика по 80 игрокам TI (по 5 на команду × 16 команд) собирается из открытых данных OpenDota по 19 турнирам сезона 2026: ESL One Birmingham, PGL Wallachia S7 и S8, DreamLeague S28 и S29, EWC 2026, BLAST Slam VI и VII, FISSURE Universe 8, 1win Essence I и II, PREMIER SERIES, Games of the Future 2026, TI-квалификации Европы, Северной и Южной Америки, Китая и Юго-Восточной Азии. Коэффициенты Valve сверены с внутриигровым глоссарием компендиума TI 2026. Обновляется автоматически каждый день.",
+    seo_h_faq: "Часто задаваемые вопросы",
+    seo_faq_q1: "Как выбрать оптимальные эмблемы для роли?",
+    seo_faq_a1: "Открой вкладку «Ценность эмблем» — там показано, сколько очков в среднем приносит каждый показатель на выбранной роли по данным всего сезона. Выбирай верхние в списке. Дорогие показатели ставь в середину знамени — у центральной эмблемы 2 соседа, значит эффекты Благотворной и Вампирической усиливаются вдвое.",
+    seo_faq_q2: "В каком порядке тратить жетоны замены?",
+    seo_faq_a2: "Сначала докрути показатели (замена показателя может занять ~5 роллов чтобы найти нужный). Потом настраивай свойства — они дают до +60% множителя. Разряды крутить в последнюю очередь: они меняются легче всего, и рано вкладываться в них смысла нет — если решишь потом сменить показатель, разряд обнулится.",
+    seo_faq_q3: "Какой тренерский титул выбрать?",
+    seo_faq_a3: "Тул сортирует все префиксы (Багровый, Королевский, Элементальный и т.д.) и суффиксы (Аутсайдер, Творец победы, Везунчик и т.д.) по ожидаемому вкладу в очки исходя из твоего конкретного состава игроков и их герой-пула. Верхние в списке — самые выгодные для тебя. Титул меняется бесплатно, без жетонов замены.",
+    seo_faq_q4: "Стоит ли жать «Заменить действия»?",
+    seo_faq_a4: "Помощник по заменам считает шанс получить полезное действие в новой подборке и сравнивает с текущими вариантами. Если все текущие 3 в минус — почти всегда выгоднее жать «Заменить действия» (жетон потрачен, но хуже знамени не сделаешь). При явно положительном текущем варианте — применяй его, не рискуй.",
+    seo_faq_q5: "Данные обновляются в реальном времени?",
+    seo_faq_a5: "Обновление раз в день, ночью — подтягиваются свежие матчи с OpenDota. Во время TI (13-23 августа) статистика будет актуальной с задержкой ~24 часа. Все коэффициенты Valve зафиксированы и проверены — они не меняются в течение TI.",
+    seo_faq_q6: "Работает ли калькулятор офлайн?",
+    seo_faq_a6: "Да, весь калькулятор — один HTML-файл со встроенными данными. Открывается двойным кликом, работает без интернета после первой загрузки. Все расчёты локально в браузере, никакие данные не отправляются на сервер.",
+    seo_credits: "SpectralDotaFantasy · калькулятор фэнтези Dota 2 · The International 2026 · бесплатно и без регистрации",
   }
 };
 const L = () => st.lang;
