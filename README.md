@@ -1,1 +1,1 @@
-link - https://github.com/SpectralXXX/dota-fantasy-league-2026/
+link - https://spectralxxx.github.io/dota-fantasy-league-2026/
