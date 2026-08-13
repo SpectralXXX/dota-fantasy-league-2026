@@ -75,7 +75,7 @@
           "text": "Счёт за карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков — среднее их счетов. За матч — сумма двух лучших карт серии. За этап — лучший матч."}},
         {"@type": "Question", "name": "Что такое эмблемы, разряды и свойства?",
          "acceptedAnswer": {"@type": "Answer",
-          "text": "Эмблема — множитель показателя. Разряд (I–V) даёт бонус +10% / +30% / +60% / +100% / +150%. Свойство добавляет условный эффект: Фрактальная, Благотворная, Вампирическая, Уникальная, Дружелюбная."}},
+          "text": "Эмблема — множитель показателя. Разряд (I–V) даёт бонус +10% / +30% / +60% / +100% / +150%. Свойство добавляет условный эффект: Фрактальная, Благотворная, Вампирская, Уникальная, Дружелюбная."}},
         {"@type": "Question", "name": "Что такое жетоны замены и как правильно их тратить?",
          "acceptedAnswer": {"@type": "Answer",
           "text": "Жетоны замены дают возможность менять эмблемы. На группе 40 жетонов, в плей-офф +30. Правильный порядок: сначала докрутить показатели, потом свойства, разряды — в последнюю очередь. Дорогие показатели ставь в середину знамени."}},
@@ -568,6 +568,10 @@ details.disc[open] .disc-chev{transform:translateY(1px) rotate(-135deg)}
 .hout-bar-fill.down{background:var(--red)}
 .hout-bar-fill.neutral{background:var(--dim)}
 .hout-pct{font:600 10.5px var(--mono);color:var(--dim)}
+.hout-alt{margin:3px 0 1px;padding-left:10px;border-left:2px solid #2a2046;
+  font:11px var(--sans);color:var(--dim);opacity:.85;line-height:1.35}
+.hout-gap{padding:8px 0;text-align:center;font:11px var(--sans);color:var(--dim);opacity:.75;
+  border-bottom:1px solid #1b1430;letter-spacing:.04em}
 @media(max-width:720px){.hact{grid-template-columns:22px 1fr auto;gap:6px}
   .hact select{grid-column:span 3;width:100%}
   .arole-cell{grid-column:1/-1;justify-content:space-between}
@@ -871,7 +875,7 @@ footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--dim);fon
     <summary><span data-i18n="seo_open">Подробнее: как считаются очки, стратегия жетонов, FAQ</span></summary>
     <div class="seo-body">
       <h2 data-i18n="seo_h_scoring">Как считаются очки фэнтези</h2>
-      <p data-i18n="seo_p_scoring">Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за этап. В групповом этапе на знамени три эмблемы, в плей-офф — пять: первые три переносятся, две добавляются. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирическая (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).</p>
+      <p data-i18n="seo_p_scoring">Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за этап. В групповом этапе на знамени три эмблемы, в плей-офф — пять: первые три переносятся, две добавляются. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирская (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).</p>
 
       <h2 data-i18n="seo_h_rerolls">Помощник по замене жетонов</h2>
       <p data-i18n="seo_p_rerolls">На групповой этап TI даётся 40 жетонов замены, на плей-офф — 30. Каждый жетон меняет одну характеристику эмблемы (показатель, разряд или свойство), либо обновляет всю подборку из трёх предложенных действий («Заменить действия»). Наш помощник считает ожидаемую выгоду каждой замены с учётом остатка жетонов и советует, что применить, а что сохранить. Порядок трат: сначала докрути показатели до нужных, потом свойства, разряды — в самом конце. Дорогие показатели ставь в середину знамени.</p>
@@ -1007,9 +1011,10 @@ function targetSets(slots, color, sel) {
 }
 // перечислить исходы: [{a: [[idx, field, value]...], p: prob, label: "..."}]
 const SLOT_CLR = {red: "🔴", blue: "🔵", green: "🟢"};
-const SLOT_ORD = ["первая эмблема", "вторая эмблема", "третья эмблема", "четвёртая эмблема", "пятая эмблема"];
 function listOutcomes(slots, op, targets) {
-  const named = i => `${SLOT_CLR[slots[i].color] || ""} ${SLOT_ORD[i]}`;
+  // порядковые названия слотов — из словаря, иначе в EN весь список исходов русский
+  const ord = t("slot_ord") || [];
+  const named = i => `${SLOT_CLR[slots[i].color] || ""} ${ord[i] || "#" + (i + 1)}`;
   if (op === "increase") {
     // Increase Quality — новый случайный разряд ВЫШЕ текущего, равновероятно.
     // Если уже V — ничего не меняется (нет вариантов выше).
@@ -1017,7 +1022,7 @@ function listOutcomes(slots, op, targets) {
       const cur = slots[idx].q, ci = RANKS.indexOf(cur);
       const higher = RANKS.slice(ci + 1);
       if (higher.length === 0) {
-        return [{ a: [], p: 1 / targets.length, label: `${named(idx)}: V (уже максимум)` }];
+        return [{ a: [], p: 1 / targets.length, label: `${named(idx)}: ${t("already_max")}` }];
       }
       const p = 1 / targets.length / higher.length;
       return higher.map(nq => ({
@@ -1027,36 +1032,30 @@ function listOutcomes(slots, op, targets) {
     });
   }
   if (op === "boost2") {
-    // 2 случайных слота получают случайный разряд ВЫШЕ текущего, 1 — случайный НИЖЕ.
-    // Все три равновероятны как "тот кто вниз". Для up-слотов конкретный новый разряд
-    // распределён равномерно среди тех что выше текущего.
+    // Ровно ДВА слота вверх и ОДИН вниз — сколько бы эмблем ни было на знамени.
+    // В группе целей ровно 3 и выбор вырожден; в плей-офф тройка выбирается из пяти,
+    // поэтому перебираем сочетания: C(n,2) пар вверх × (n−2) кандидата вниз.
     if (targets.length < 3) return [];
+    const picks = [];
+    for (let i = 0; i < targets.length; i++)
+      for (let j = i + 1; j < targets.length; j++)
+        for (const down of targets)
+          if (down !== targets[i] && down !== targets[j]) picks.push([targets[i], targets[j], down]);
+    const pickP = 1 / picks.length;
+    const upOptsOf = idx => { const h = RANKS.slice(RANKS.indexOf(slots[idx].q) + 1); return h.length ? h : [slots[idx].q]; };
+    const downOptsOf = idx => { const l = RANKS.slice(0, RANKS.indexOf(slots[idx].q)); return l.length ? l : [slots[idx].q]; };
     const combos = [];
-    targets.forEach((down, di) => {
-      const ups = targets.filter((_, i) => i !== di);
-      // для down-слота: случайный разряд НИЖЕ текущего
-      const downCur = slots[down].q, dci = RANKS.indexOf(downCur);
-      const lower = RANKS.slice(0, dci);
-      const downOpts = lower.length ? lower : [downCur];  // если I — остаётся I
-      // для каждого up-слота: варианты ВЫШЕ текущего
-      const upOptsPerSlot = ups.map(idx => {
-        const cur = slots[idx].q, ci = RANKS.indexOf(cur);
-        const higher = RANKS.slice(ci + 1);
-        return higher.length ? higher : [cur];  // если V — остаётся V
-      });
-      // Декартово произведение всех up-опций × downOpts
-      const upCombos = cartesian(upOptsPerSlot);
-      for (const upC of upCombos) {
-        for (const dv of downOpts) {
-          const a = ups.map((idx, i) => [idx, "q", upC[i]]);
-          a.push([down, "q", dv]);
-          const p = (1 / targets.length) * (1 / upCombos.length) * (1 / downOpts.length);
-          combos.push({ a, p,
-            label: ups.map((i, k) => `${named(i)} ${slots[i].q}→${upC[k]}↑`).join(", ")
-              + ` · ${named(down)} ${slots[down].q}→${dv}↓` });
-        }
+    for (const [ua, ub, down] of picks) {
+      const oa = upOptsOf(ua), ob = upOptsOf(ub), od = downOptsOf(down);
+      const p = pickP / (oa.length * ob.length * od.length);
+      for (const va of oa) for (const vb of ob) for (const dv of od) {
+        combos.push({
+          a: [[ua, "q", va], [ub, "q", vb], [down, "q", dv]], p,
+          label: `${named(ua)} ${slots[ua].q}→${va}↑, ${named(ub)} ${slots[ub].q}→${vb}↑`
+            + ` · ${named(down)} ${slots[down].q}→${dv}↓`
+        });
       }
-    });
+    }
     return combos;
   }
   if (op === "stat") {
@@ -1093,7 +1092,7 @@ function listOutcomes(slots, op, targets) {
     }
     const opts = Object.keys(TR).filter(x => x !== "none" && x !== slots[idx].t);
     return opts.map(t => ({ f: "t", v: t, p: 1 / opts.length,
-      l: `${named(idx)}: ${TRru[slots[idx].t] || "без"} → ${TRru[t]}` }));
+      l: `${named(idx)}: ${TRru[slots[idx].t] || TRru.none} → ${TRru[t]}` }));
   });
   return cartesian(perT).map(c => ({
     a: c.map((x, t) => [targets[t], x.f, x.v]),
@@ -1134,13 +1133,15 @@ function actionOutcomes(roleK, slots, op, color, sel, topK) {
   const groups = {};
   for (const o of list) {
     const key = Math.round(o.delta / 5) * 5;
-    if (!groups[key]) groups[key] = { delta: 0, p: 0, examples: [] };
-    groups[key].delta += o.delta * o.p; groups[key].p += o.p;
-    if (groups[key].examples.length < 2) groups[key].examples.push(o.label);
+    if (!groups[key]) groups[key] = { delta: 0, p: 0, n: 0, examples: [] };
+    groups[key].delta += o.delta * o.p; groups[key].p += o.p; groups[key].n++;
+    // держим до 3 примеров: равнозначные варианты надо показать, иначе кажется,
+    // что часть свойств вообще не рассматривается (а они просто дают ту же цифру)
+    if (groups[key].examples.length < 3) groups[key].examples.push(o.label);
   }
-  const arr = Object.values(groups).map(g => ({ delta: g.delta / g.p, p: g.p, examples: g.examples }));
+  const arr = Object.values(groups).map(g => ({ delta: g.delta / g.p, p: g.p, n: g.n, examples: g.examples }));
   arr.sort((a, b) => b.delta - a.delta);
-  return arr.slice(0, topK || 5);
+  return topK ? arr.slice(0, topK) : arr;   // без topK — весь спектр, включая падения вниз
 }
 const plural = (n, one, few, many) => {
   const m10 = n % 10, m100 = n % 100;
@@ -1263,7 +1264,23 @@ const I18N = {
     advice_peak: (N) => `<span class="skip">Banner is near its peak</span> — fewer than <b>10%</b> of possible options are positive right now, so a reroll almost certainly gives a minus too. Best move: <b>save tokens</b> for another banner or the next stage. If you really want to gamble — hit Reroll Options, but odds are against you. Tokens left: <b>${N}</b>.`,
     role_letters: { core: "C", mid: "M", support: "S" },
     // details ("show more")
-    details_head: (roleRu, avg, allNeg) => `Possible outcomes for <b>${roleRu}</b> — from <b>best</b> (top) to <b>worst</b>. Bar = outcome probability, number on the right = gain/loss to banner power. Average across all: <b>${avg}</b>.${allNeg ? ' <span style="color:var(--red)">All outcomes are negative — this option only hurts, don\'t apply.</span>' : ''}`,
+    details_head: (roleRu, avg, allNeg, pDown) => `Possible outcomes for <b>${roleRu}</b> — <b>best</b> on top, <b>worst</b> at the bottom. Quality can roll down as well, that is accounted for. Bar = outcome probability, number on the right = gain/loss to banner power. Average across all: <b>${avg}</b>, chance to make the banner worse: <b>${pDown}%</b>.${allNeg ? ' <span style="color:var(--red)">All outcomes are negative — this option only hurts, don\'t apply.</span>' : ''}`,
+    details_gap: (n) => `⋯ ${n} more outcome${n === 1 ? "" : "s"} in between ⋯`,
+    details_same: "exactly the same result:",
+    details_same_more: (n) => ` · and ${n} more`,
+    already_max: "V (already at maximum)",
+    not_applicable: "not applicable",
+    tip_is_advised: " · this is what the tool advises",
+    advice_empty: "Enter the actions you were offered — the tool will say which one to apply.",
+    tip_slot_color: (c) => `${c} emblem — the colour is fixed for this position and cannot change.`,
+    tip_slot_stat: "The stat on this emblem — its points get multiplied by the percentage.",
+    tip_slot_pct: "Your emblem percentage from the game (for example, 230). Higher percentage means the stat contributes more.",
+    tip_prefix_badge: "Maximum prefix bonus, when it triggers.",
+    tip_suffix_badge: "Maximum suffix bonus, when it triggers.",
+    banx_note_friendly: "Friendly is needed on at least three emblems of the banner",
+    banx_note_fractal3: "all three tiers must be different",
+    banx_note_fractal5: "all five tiers must be different — that means exactly I, II, III, IV, V",
+    banx_note_vampiric: "no hunt for Friendly needed",
     details_none: "No applicable outcomes",
     show_more: "show more", show_less: "hide",
     // slot ordinals + emojis
@@ -1423,7 +1440,23 @@ const I18N = {
     advice_skip_no_upside: (N) => `<span class="skip">Не применяй ни одно из текущих 3</span> — все в минус, знамя от них только ухудшится.`,
     advice_peak: (N) => `<span class="skip">Знамя почти на пределе</span> — плюсовых действий в игре осталось меньше <b>10%</b>, реролл почти наверняка тоже даст минус. Оптимально: <b>сохрани жетоны</b> для другого знамени или следующего этапа. Если очень хочется рискнуть — жми «Заменить действия», но шансы против тебя. Жетонов осталось: <b>${N}</b>.`,
     role_letters: { core: "О", mid: "Ц", support: "П" },
-    details_head: (roleRu, avg, allNeg) => `Возможные исходы для знамени <b>${roleRu}</b> — от <b>лучшего</b> (сверху) к <b>худшему</b>. Полоска — вероятность исхода, число справа — прибавка/убыль к силе знамени. Среднее по всем: <b>${avg}</b>.${allNeg ? ' <span style="color:var(--red)">Все варианты — минус: это действие только ухудшит знамя, применять не стоит.</span>' : ''}`,
+    details_head: (roleRu, avg, allNeg, pDown) => `Возможные исходы для знамени <b>${roleRu}</b> — сверху <b>лучшие</b>, снизу <b>худшие</b>. Разряд может уехать и вниз, это учтено. Полоска — вероятность исхода, число справа — прибавка/убыль к силе знамени. Среднее по всем: <b>${avg}</b>, шанс ухудшить знамя: <b>${pDown}%</b>.${allNeg ? ' <span style="color:var(--red)">Все варианты — минус: это действие только ухудшит знамя, применять не стоит.</span>' : ''}`,
+    details_gap: (n) => `⋯ ещё ${n} ${plural(n, "промежуточный исход", "промежуточных исхода", "промежуточных исходов")} между ними ⋯`,
+    details_same: "ровно столько же дают:",
+    details_same_more: (n) => ` · и ещё ${n}`,
+    already_max: "V (уже максимум)",
+    not_applicable: "не применимо",
+    tip_is_advised: " · это и советует тул",
+    advice_empty: "Введи действия из подборки — тул подскажет, что применить.",
+    tip_slot_color: (c) => `${c} эмблема — цвет закреплён за этой позицией и не меняется.`,
+    tip_slot_stat: "Показатель этой эмблемы — его очки умножаются на процент.",
+    tip_slot_pct: "Процент вашей эмблемы из игры (например, 230). Больше процент — больше вклад показателя.",
+    tip_prefix_badge: "Максимальный бонус префикса, когда он срабатывает.",
+    tip_suffix_badge: "Максимальный бонус суффикса, когда он срабатывает.",
+    banx_note_friendly: "дружелюбная нужна минимум на трёх эмблемах знамени",
+    banx_note_fractal3: "все три разряда должны отличаться",
+    banx_note_fractal5: "все пять разрядов должны отличаться — то есть ровно I, II, III, IV, V",
+    banx_note_vampiric: "собирается без охоты за дружелюбной",
     details_none: "нет применимых вариантов",
     show_more: "подробнее", show_less: "скрыть",
     slot_ord: ["первая эмблема", "вторая эмблема", "третья эмблема", "четвёртая эмблема", "пятая эмблема"],
@@ -1433,7 +1466,7 @@ const I18N = {
     op_boost2: "Увеличить два случайных качества и уменьшить одно",
     op_reroll_actions: "Заменить действия",
     scope_none: "на знамени",
-    tr_fractal: "Фрактальная", tr_benevolent: "Благотворная", tr_vampiric: "Вампирическая",
+    tr_fractal: "Фрактальная", tr_benevolent: "Благотворная", tr_vampiric: "Вампирская",
     tr_unique: "Уникальная", tr_friendly: "Дружелюбная",
     tr_fractal_desc: "+60% себе, если все три разряда на знамени разные",
     tr_vampiric_desc: "+50% себе, но −10% каждому соседу",
@@ -1478,7 +1511,7 @@ const I18N = {
     seo_h_about: "Что такое SpectralDotaFantasy",
     seo_p_about: "Калькулятор фэнтези-лиги The International 2026 — инструмент для игроков компендиума Dota 2. Считает ожидаемые фэнтези-очки для любой связки игроков по официальным правилам Valve, помогает выбрать эмблемы, разряды и свойства для трёх знамён (Основа, Центр, Поддержка) и подбирает тренерский титул с учётом реальной статистики матчей всего сезона 2026.",
     seo_h_scoring: "Как считаются очки фэнтези",
-    seo_p_scoring: "Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за этап. В групповом этапе на знамени три эмблемы, в плей-офф — пять: первые три переносятся, две добавляются. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирическая (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).",
+    seo_p_scoring: "Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за этап. В групповом этапе на знамени три эмблемы, в плей-офф — пять: первые три переносятся, две добавляются. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирская (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).",
     seo_h_rerolls: "Помощник по замене жетонов",
     seo_p_rerolls: "На групповой этап TI даётся 40 жетонов замены, на плей-офф — 30. Каждый жетон меняет одну характеристику эмблемы (показатель, разряд или свойство), либо обновляет всю подборку из трёх предложенных действий («Заменить действия»). Наш помощник считает ожидаемую выгоду каждой замены с учётом остатка жетонов и советует, что применить, а что сохранить. Порядок трат: сначала докрути показатели до нужных, потом свойства, разряды — в самом конце. Дорогие показатели ставь в середину знамени.",
     seo_h_teams: "Команды на The International 2026",
@@ -1730,10 +1763,10 @@ function drawBanners() {
     em.forEach((e, i) => {
       const s = el("div", "slot");
       const sp = el("span", "spine " + e.color);
-      sp.title = `${COLRU[e.color]} эмблема — цвет закреплён за этой позицией и не меняется.`;
+      sp.title = t("tip_slot_color", COLRU[e.color]);
       s.appendChild(sp);
       const pick = el("span", "pick"), sel = el("select");
-      sel.title = "Показатель этой эмблемы — его очки умножаются на процент.";
+      sel.title = t("tip_slot_stat");
       sel.setAttribute("aria-label", L()==="en"
         ? `${COLRU[e.color].toLowerCase()} emblem stat, ${r.ru}`
         : `показатель ${COLRU[e.color].toLowerCase()} эмблемы, ${r.ru}`);
@@ -1748,7 +1781,7 @@ function drawBanners() {
       const inp = el("input", "amt");
       inp.type = "number"; inp.min = 0; inp.max = 600; inp.step = 10; inp.value = e.pct;
       inp.setAttribute("aria-label", (L()==="en" ? "emblem percent " : "процент эмблемы ") + stName(e.stat));
-      inp.title = "Процент вашей эмблемы из игры (например, 230). Больше процент — больше вклад показателя.";
+      inp.title = t("tip_slot_pct");
       inp.oninput = () => { e.pct = Math.max(0, +inp.value || 0); light(); };
       s.appendChild(inp); body.appendChild(s);
     });
@@ -1841,9 +1874,9 @@ function drawTitle() {
     v => { st.suffix = v; document.getElementById("suffix").value = v; light(); });
   const pb = document.getElementById("pbadge"), sb = document.getElementById("sbadge");
   pb.textContent = st.prefix ? "+" + preByKey[st.prefix].b + "%" : "";
-  pb.title = st.prefix ? "Максимальный бонус префикса, когда он срабатывает." : "";
+  pb.title = st.prefix ? t("tip_prefix_badge") : "";
   sb.textContent = st.suffix ? "+" + sufByKey[st.suffix].b + "%" : "";
-  sb.title = st.suffix ? "Максимальный бонус суффикса, когда он срабатывает." : "";
+  sb.title = st.suffix ? t("tip_suffix_badge") : "";
 }
 
 const FRESH = ["19696", "19101", "19785", "19543", "19422"]; // DL29, BLAST VII, EWC, Wallachia S8, Birmingham
@@ -1890,7 +1923,28 @@ function drawTraits() {
   const KIND_EN = { max: "maximum", real: "realistic",   mix: "mixed tiers",        diff: "different tiers" };
   const KIND = L() === "en" ? KIND_EN : KIND_RU;
   const DIFF_LABEL = L() === "en" ? { легко: "easy", средне: "medium", сложно: "hard" } : { легко: "легко", средне: "средне", сложно: "сложно" };
-  const ex = [
+  // Примеры строятся под ТЕКУЩИЙ этап: в группе 3 эмблемы, в плей-офф 5.
+  // Раньше список был жёстко на три — на плей-офф он показывал недостижимые цели
+  // и врал про фрактальную («три разряда»), которой на пяти слотах нужно пять разных.
+  const NS = (D.slots.core[st.stage] || []).length || 3;
+  const rep = q => Array(NS).fill(q);
+  const all = k => Array(NS).fill(k);
+  const alt = () => Array.from({ length: NS }, (_, i) => i % 2 ? "benevolent" : "vampiric");
+  const desc = top => { const R = ["I","II","III","IV","V"]; // убывающая лесенка от top
+    return Array.from({ length: NS }, (_, i) => R[Math.max(0, R.indexOf(top) - i)]); };
+  const ex = (NS >= 5 ? [
+    { qs: rep("V"),   ts: all("friendly"), kind: "max",  diff: "сложно" },
+    { qs: rep("V"),   ts: alt(),           kind: "real", diff: "сложно" },
+    { qs: ["V","V","V","V","IV"], ts: alt(), kind: "real", diff: "сложно" },
+    { qs: rep("IV"),  ts: all("friendly"), kind: "max",  diff: "сложно" },
+    { qs: rep("IV"),  ts: alt(),           kind: "real", diff: "средне" },
+    { qs: ["V","V","IV","IV","III"], ts: alt(), kind: "mix", diff: "средне" },
+    { qs: rep("III"), ts: all("friendly"), kind: "max",  diff: "средне" },
+    { qs: rep("III"), ts: alt(),           kind: "real", diff: "легко" },
+    { qs: desc("V"),  ts: alt(),           kind: "mix",  diff: "легко" },
+    { qs: desc("V"),  ts: all("fractal"),  kind: "diff", diff: "сложно" },
+    { qs: rep("II"),  ts: alt(),           kind: "real", diff: "легко" },
+  ] : [
     { qs: ["V","V","V"],     ts: ["friendly","friendly","friendly"],   kind: "max",  diff: "сложно" },
     { qs: ["V","V","V"],     ts: ["vampiric","benevolent","vampiric"], kind: "real", diff: "сложно" },
     { qs: ["V","V","IV"],    ts: ["vampiric","benevolent","vampiric"], kind: "real", diff: "сложно" },
@@ -1903,13 +1957,17 @@ function drawTraits() {
     { qs: ["III","III","III"], ts: ["vampiric","benevolent","vampiric"], kind: "real", diff: "легко" },
     { qs: ["III","II","I"],  ts: ["fractal","fractal","fractal"],      kind: "diff", diff: "легко" },
     { qs: ["II","II","II"],  ts: ["vampiric","benevolent","vampiric"], kind: "real", diff: "легко" },
-  ].map(e => ({ ...e, v: tot(e.qs, e.ts) })).sort((a, b) => b.v - a.v);
-  const NOTE_RU = { friendly: "нужна дружелюбная на всех трёх эмблемах", fractal: "все три разряда должны отличаться", vampiric: "собирается без охоты за дружелюбной" };
-  const NOTE_EN = { friendly: "requires Friendly on all three emblems", fractal: "all three tiers must be different", vampiric: "no hunt for Friendly needed" };
-  const NOTE = L() === "en" ? NOTE_EN : NOTE_RU;
+  ]).map(e => ({ ...e, v: tot(e.qs, e.ts) })).sort((a, b) => b.v - a.v);
+  const NOTE = {
+    friendly: t("banx_note_friendly"),
+    fractal: t(NS >= 5 ? "banx_note_fractal5" : "banx_note_fractal3"),
+    vampiric: t("banx_note_vampiric")
+  };
   const tiersLabel = L() === "en" ? "Tiers" : "Разряды";
-  const threeWord = L() === "en" ? "three" : "три";
-  const rankLabel = qs => qs.every(q => q === qs[0]) ? `${threeWord} ${qs[0]}` : qs.join(", ");
+  const countWord = L() === "en"
+    ? { 3: "three", 4: "four", 5: "five" }[NS] || NS
+    : { 3: "три", 4: "четыре", 5: "пять" }[NS] || NS;
+  const rankLabel = qs => qs.every(q => q === qs[0]) ? `${countWord} ${qs[0]}` : qs.join(", ");
   document.getElementById("bannerex").innerHTML = ex.map((e, i) => `
     <div class="banx">
       <div class="banx-main">
@@ -2142,7 +2200,7 @@ function drawHelper() {
       const isWin = hasWin && i === winA && r.k === winRole;
       const cell = el("span", "arole" + (isWin ? " win" : "") + (d > 0 ? " up" : d < 0 ? " down" : ""),
         `<b>${(t("role_letters") || {})[r.k] || r.ru[0]}</b>${e ? (d > 0 ? "+" : "") + fmt(e.delta) : "—"}`);
-      cell.title = `${r.ru}: ${e ? (d > 0 ? "+" : "") + fmt(e.delta) : "не применимо"}` + (isWin ? " · это и советует тул" : "");
+      cell.title = `${r.ru}: ${e ? (d > 0 ? "+" : "") + fmt(e.delta) : t("not_applicable")}` + (isWin ? t("tip_is_advised") : "");
       roles.appendChild(cell);
     });
     row.appendChild(roles);
@@ -2161,24 +2219,40 @@ function drawHelper() {
       const br = rowBestRole ? ROLES.find(r => r.k === rowBestRole) : ROLES[0];
       const rs = st.helper.slots[br.k];
       const [color, sel] = OP_HAS_TARGET[a.op] ? a.scope.split(":") : ["any", "all"];
-      const outs = actionOutcomes(br.k, rs, a.op, color, sel, 6);
+      const all = actionOutcomes(br.k, rs, a.op, color, sel, null);
+      // Разряд может уехать и ВНИЗ — показываем оба конца, иначе список врёт оптимизмом.
+      const EDGE = 3;
+      const outs = all.length <= EDGE * 2 ? all : all.slice(0, EDGE).concat(all.slice(-EDGE));
+      const gapAt = all.length <= EDGE * 2 ? -1 : EDGE - 1;
+      // скрыто именно сырых исходов, а не групп — иначе подпись врёт
+      const shown = new Set(outs);
+      const hidden = all.reduce((s, o) => s + (shown.has(o) ? 0 : o.n), 0);
+      const pDown = all.reduce((s, o) => s + (o.delta < -0.5 ? o.p : 0), 0);
       const evD = per[br.k] ? Math.round(per[br.k].delta) : 0;
       const evSign = evD > 0 ? "+" : "";
-      const allNeg = outs.length && outs.every(o => o.delta < -0.5);
-      let html = `<div class="hout-head">${t("details_head", br.ru, evSign + fmt(evD), allNeg)}</div>`;
+      const allNeg = all.length && all.every(o => o.delta < -0.5);
+      let html = `<div class="hout-head">${t("details_head", br.ru, evSign + fmt(evD), allNeg, Math.round(pDown * 100))}</div>`;
       if (!outs.length) html += `<div class="hout-r"><span class="hout-l" style="grid-column:1/-1;color:var(--dim)">${t("details_none")}</span></div>`;
       else {
         const maxP = Math.max(...outs.map(o => o.p));
-        html += outs.map(o => {
+        html += outs.map((o, oi) => {
           const d = Math.round(o.delta), sign = d > 0 ? "+" : "";
           const cls = d > 0 ? "up" : d < 0 ? "down" : "neutral";
-          const pct = (o.p * 100).toFixed(o.p < 0.1 ? 1 : 0);
+          const pv = o.p * 100;
+          const pct = pv < 0.05 ? "<0.1" : pv.toFixed(pv < 10 ? 1 : 0);
           const barW = Math.max(4, Math.round(o.p / maxP * 100));
+          const gap = oi === gapAt
+            ? `<div class="hout-gap">${t("details_gap", hidden)}</div>` : "";
+          // равнозначные варианты (та же прибавка) — иначе не видно, что их вообще считали
+          const rest = o.examples.slice(1);
+          const more = o.n - o.examples.length;
+          const alt = rest.length
+            ? `<div class="hout-alt">${t("details_same")} ${rest.join(" · ")}${more > 0 ? t("details_same_more", more) : ""}</div>` : "";
           return `<div class="hout-r">
             <div class="hout-top"><span class="hout-l">${o.examples[0]}</span>
-              <span class="hout-d ${cls}">${sign}${fmt(o.delta)}</span></div>
+              <span class="hout-d ${cls}">${sign}${fmt(o.delta)}</span></div>${alt}
             <div class="hout-bot"><div class="hout-bar"><div class="hout-bar-fill ${cls}" style="width:${barW}%"></div></div>
-              <span class="hout-pct">${pct}%</span></div></div>`;
+              <span class="hout-pct">${pct}%</span></div></div>${gap}`;
         }).join("");
       }
       det.innerHTML = html;
@@ -2193,7 +2267,7 @@ function drawHelper() {
   });
   let html;
   if (bestA < 0) {
-    html = `<div class="advline"><span class="advico">·</span><span class="advtxt">Введи действия из подборки — тул подскажет, что применить.</span></div>`;
+    html = `<div class="advline"><span class="advico">·</span><span class="advtxt">${t("advice_empty")}</span></div>`;
   } else {
     const rr = rerollEV(st.helper.slots, bestD);
     const keepGood = bestD > 0.5;
@@ -2307,7 +2381,8 @@ const render = () => { drawBanners(); drawResults(); drawTitle(); };
       const ok = masterScopesGlobal(a.op);
       if (!ok.some(([v]) => v === a.scope)) a.scope = ok[0][0];
     }
-    drawRoll(); drawHelper(); render();
+    // примеры знамён зависят от числа слотов — без этого вкладка осталась бы на 3 эмблемах
+    drawTraits(); drawRoll(); drawHelper(); render();
   });
   document.getElementById("tAll").onclick = () => {
     st.tours = new Set(Object.keys(D.leagues)); light(); drawTours(); drawRoll(); drawHelper(); };
