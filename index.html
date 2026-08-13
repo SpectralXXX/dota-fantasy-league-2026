@@ -8,7 +8,8 @@
 <meta name="keywords" content="fantasy calculator, dota 2 fantasy, TI 2026 compendium, dota fantasy league, emblem calculator, war banner, roll assistant, coaching title, калькулятор фэнтези дота, фэнтези dota 2, компендиум TI 2026">
 <meta name="author" content="SpectralDotaFantasy">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-<meta name="yandex-verification" content="ЗАМЕНИ_НА_КОД_ИЗ_YANDEX_ВЕБМАСТЕРА">
+<!-- Яндекс подтверждён HTML-файлом yandex_69fbff411a188c99.html в корне домена,
+     поэтому метатег yandex-verification здесь не нужен. -->
 <meta name="google-site-verification" content="Ww8IpiQaLO9BYMAetrWOVAouzKTLkB_L8egZtKfLkiA">
 <meta name="theme-color" content="#0d0916">
 <meta name="format-detection" content="telephone=no">
@@ -55,11 +56,12 @@
       "creator": {"@type": "Organization", "name": "SpectralDotaFantasy"},
       "featureList": [
         "Расчёт очков фэнтези по официальным правилам Valve TI 2026",
+        "Знамёна плей-офф: 5 эмблем на роль",
         "18 игровых показателей с точными коэффициентами",
-        "Разряды и свойства эмблем",
-        "Помощник по заменам жетонов",
-        "Тренерский титул: префиксы и суффиксы",
-        "Данные по 16 командам TI 2026"
+        "Разряды I-V и свойства эмблем",
+        "Помощник по заменам жетонов: что применить и стоит ли менять действия",
+        "Тренерский титул: 8 префиксов и 8 суффиксов с реальными частотами",
+        "Данные по 16 командам TI 2026, обновляются по ходу турнира"
       ]
     },
     {
@@ -830,10 +832,10 @@ footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--dim);fon
     <summary><span data-i18n="seo_open">Подробнее: как считаются очки, стратегия жетонов, FAQ</span></summary>
     <div class="seo-body">
       <h2 data-i18n="seo_h_scoring">Как считаются очки фэнтези</h2>
-      <p data-i18n="seo_p_scoring">Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за всю групповую стадию. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирическая (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).</p>
+      <p data-i18n="seo_p_scoring">Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за этап. В групповом этапе на знамени три эмблемы, в плей-офф — пять: первые три переносятся, две добавляются. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирическая (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).</p>
 
       <h2 data-i18n="seo_h_rerolls">Помощник по замене жетонов</h2>
-      <p data-i18n="seo_p_rerolls">На групповой этап TI даётся 40 жетонов замены, ещё 30 добавляется в плей-офф. Каждый жетон меняет одну характеристику эмблемы (показатель, разряд или свойство), либо обновляет всю подборку из трёх предложенных действий («Заменить действия»). Наш помощник считает ожидаемую выгоду каждой замены с учётом остатка жетонов и советует, что применить, а что сохранить. Порядок трат: сначала докрути показатели до нужных, потом свойства, разряды — в самом конце. Дорогие показатели ставь в середину знамени.</p>
+      <p data-i18n="seo_p_rerolls">На групповой этап TI даётся 40 жетонов замены, на плей-офф — 30. Каждый жетон меняет одну характеристику эмблемы (показатель, разряд или свойство), либо обновляет всю подборку из трёх предложенных действий («Заменить действия»). Наш помощник считает ожидаемую выгоду каждой замены с учётом остатка жетонов и советует, что применить, а что сохранить. Порядок трат: сначала докрути показатели до нужных, потом свойства, разряды — в самом конце. Дорогие показатели ставь в середину знамени.</p>
 
       <h2 data-i18n="seo_h_data">Источник данных</h2>
       <p data-i18n="seo_p_data">Статистика по 80 игрокам TI (по 5 на команду × 16 команд) собирается из открытых данных OpenDota по 19 турнирам сезона 2026: ESL One Birmingham, PGL Wallachia S7 и S8, DreamLeague S28 и S29, EWC 2026, BLAST Slam VI и VII, FISSURE Universe 8, 1win Essence I и II, PREMIER SERIES, Games of the Future 2026, TI-квалификации Европы, Северной и Южной Америки, Китая и Юго-Восточной Азии. Коэффициенты Valve сверены с внутриигровым глоссарием компендиума TI 2026. Обновляется автоматически каждый день.</p>
@@ -1140,7 +1142,7 @@ const I18N = {
   en: {
     // header + meta
     doc_title: "Fantasy Calculator · The International 2026 — SpectralDotaFantasy",
-    doc_desc: "Fantasy League calculator for The International 2026 using official Valve rules. 18 stats, emblem qualities and traits, roll assistant, coaching titles. Auto-updated daily. Free, no signup.",
+    doc_desc: "Fantasy League calculator for The International 2026 using official Valve rules. Playoff banners with 5 emblems, 18 stats, tiers and traits, roll assistant, coaching titles. Live TI match data. Free, no signup.",
     eyebrow: "Fantasy League · The International 2026",
     h1_main: 'Fantasy&nbsp;Roster Calculator <span style="color:var(--muted);font-weight:600">·&nbsp;The&nbsp;International&nbsp;2026</span>',
     intro_p: "Set your emblems and percentages — the pairings table updates on the fly.",
@@ -1241,9 +1243,9 @@ const I18N = {
     tr_unique_desc: "+30% to this emblem if it is the only Unique on the banner",
     tr_benevolent_desc: "+20% to each neighbor, nothing to itself",
     // traits section
-    traits_lead: "Every emblem has a Tier (I–V power) and a Trait (special effect). A banner has three emblems and all their bonuses stack. Below — what each trait does and the strongest banner layouts.",
+    traits_lead: "Every emblem has a Tier (I–V power) and a Trait (special effect). A banner holds three emblems in the Group Stage and five in the Playoffs — all their bonuses stack. Below: what each trait does and the strongest layouts.",
     what_traits_do: "What traits do", strong_banners: "Strong banners", strong_banners_sub: "max / realistic",
-    strong_banners_lead: "The percent is the total bonus of the three emblems on the banner (tiers + traits) computed with verified values. It's only for comparing layouts to each other — bigger = stronger banner.",
+    strong_banners_lead: "Layouts below are shown for a three-emblem banner. The percent is the total bonus (tiers + traits) computed with verified values — use it only to compare layouts against each other: bigger = stronger. The same trait logic applies to five-emblem playoff banners.",
     tier_h: "Tier — emblem power", trait_h: "Trait — special effect",
     banner_diff: { легко: "easy", средне: "medium", сложно: "hard" },
     // roll (emblem value)
@@ -1284,9 +1286,9 @@ const I18N = {
     seo_h_about: "What SpectralDotaFantasy is",
     seo_p_about: "A Fantasy League calculator for The International 2026 — a tool for players of the Dota 2 Compendium. Computes expected fantasy points for any pairing of players by the official Valve rules, helps you pick emblems, qualities and traits for your three War Banners (Core, Mid, Support), and picks a Coaching Title using real match statistics across the entire 2026 season.",
     seo_h_scoring: "How fantasy points are scored",
-    seo_p_scoring: "Score per map = sum of (base points for a stat × emblem percent). A two-player role (Core, Support) — the average of their individual scores. Match score = sum of the two best maps of the series — matches the Bo3 format of the TI 2026 group stage exactly. Stage score = the best match of the role across the group stage. Emblem quality gives from +10% (Tier I) to +150% (Tier V) to base points; trait adds a conditional effect: Fractal (+60% self if all qualities differ), Benevolent (+20% to neighbors), Vampiric (+50% self, −10% to neighbors), Unique (+30% if it's the only Unique), Friendly (+50% if there are at least 3 Friendly on the banner).",
+    seo_p_scoring: "Score per map = sum of (base points for a stat × emblem percent). A two-player role (Core, Support) — the average of their individual scores. Match score = sum of the two best maps of the series — matches the Bo3 format of the TI 2026 group stage exactly. Stage score = the best match of the role in that stage. A banner holds three emblems in the Group Stage and five in the Playoffs — the first three carry over, two are added. Emblem quality gives from +10% (Tier I) to +150% (Tier V) to base points; trait adds a conditional effect: Fractal (+60% self if all qualities differ), Benevolent (+20% to neighbors), Vampiric (+50% self, −10% to neighbors), Unique (+30% if it's the only Unique), Friendly (+50% if there are at least 3 Friendly on the banner).",
     seo_h_rerolls: "Roll tokens assistant",
-    seo_p_rerolls: "You get 40 roll tokens for the group stage of TI, plus 30 more for the playoffs. Each token changes one property of an emblem (stat, quality or trait), or Reroll Options refreshes all three offered actions. Our assistant computes the expected value of each replacement given your remaining tokens and tells you what to apply and what to save. Spending order: fix the stats first (a stat replacement may take ~5 rolls to hit what you want), then traits, then qualities last. Put the expensive stats in the middle of the banner.",
+    seo_p_rerolls: "You get 40 roll tokens for the TI group stage and 30 for the playoffs. Each token changes one property of an emblem (stat, quality or trait), or Reroll Options refreshes all three offered actions. Our assistant computes the expected value of each replacement given your remaining tokens and tells you what to apply and what to save. Spending order: fix the stats first (a stat replacement may take ~5 rolls to hit what you want), then traits, then qualities last. Put the expensive stats in the middle of the banner.",
     seo_h_teams: "Teams at The International 2026",
     seo_p_teams: "The International 2026 (August 13-23, Shanghai) features 16 teams, qualified through direct invites and regional qualifiers: Team Falcons, Team Liquid, Team Spirit, Iron Wings, BoomBoys, Aurora Gaming, GamerLegion, HULIGANI, LGD Gaming, Nigma Galaxy, OG, TEAM VISION, Team Resilience, Team Yandex, Vici Gaming, Xtreme Gaming. Format: group stage August 13-16 is a Swiss system of 16 teams, all matches Bo3. Top 3 advance directly to playoffs upper bracket, teams 4-13 play a qualifier round from which 5 more advance. Playoffs August 20-23 — double elimination for 8 teams, all Bo3, grand final Bo5.",
     seo_h_data: "Data source",
@@ -1308,7 +1310,7 @@ const I18N = {
   },
   ru: {
     doc_title: "Калькулятор фэнтези Dota 2 · The International 2026 — SpectralDotaFantasy",
-    doc_desc: "Калькулятор фэнтези-лиги The International 2026 по официальным правилам Valve. 18 показателей, разряды и свойства эмблем, помощник по заменам жетонов, тренерский титул. Данные обновляются каждый день. Бесплатно, без регистрации.",
+    doc_desc: "Калькулятор фэнтези-лиги The International 2026 по официальным правилам Valve. Знамёна плей-офф с 5 эмблемами, 18 показателей, разряды и свойства, помощник по заменам жетонов, тренерский титул. Данные с матчей TI. Бесплатно, без регистрации.",
     eyebrow: "Фэнтези-лига · The International 2026",
     h1_main: 'Калькулятор фэнтези&nbsp;Dota&nbsp;2 <span style="color:var(--muted);font-weight:600">·&nbsp;The&nbsp;International&nbsp;2026</span>',
     intro_p: "Выставьте свои эмблемы и проценты — таблица связок обновится сама.",
@@ -1396,9 +1398,9 @@ const I18N = {
     tr_friendly_desc: "+50% себе, но только если дружелюбных на знамени минимум три",
     tr_unique_desc: "+30% себе, если она на знамени одна",
     tr_benevolent_desc: "+20% каждому соседу, себе — ничего",
-    traits_lead: "У каждой эмблемы есть разряд (сила, I–V) и свойство (особый эффект). На знамени стоят три эмблемы, и все их бонусы складываются. Ниже — что делает каждое свойство и какие раскладки знамени самые сильные.",
+    traits_lead: "У каждой эмблемы есть разряд (сила, I–V) и свойство (особый эффект). На знамени три эмблемы в групповом этапе и пять в плей-офф — все их бонусы складываются. Ниже: что делает каждое свойство и какие раскладки самые сильные.",
     what_traits_do: "Что делают свойства", strong_banners: "Сильные знамёна", strong_banners_sub: "максимум / реалистично",
-    strong_banners_lead: "Процент — суммарный бонус всех трёх эмблем знамени (разряды + свойства), посчитанный по выверенным значениям. Он нужен только чтобы сравнивать раскладки между собой: чем больше, тем сильнее знамя.",
+    strong_banners_lead: "Раскладки ниже показаны для знамени из трёх эмблем. Процент — суммарный бонус (разряды + свойства) по выверенным значениям, он нужен только чтобы сравнивать раскладки между собой: больше — сильнее. Та же логика свойств работает и на знамени из пяти эмблем в плей-офф.",
     tier_h: "Разряд — сила эмблемы", trait_h: "Свойство — особый эффект",
     banner_diff: { легко: "легко", средне: "средне", сложно: "сложно" },
     roll_lead: "Сколько очков в среднем приносит эмблема каждого показателя на выбранных турнирах — до разряда и свойств. Чем выше в списке, тем выгоднее ставить эту эмблему на роль. Считается по нашим данным за сезон и зависит от выбранных турниров.",
@@ -1434,9 +1436,9 @@ const I18N = {
     seo_h_about: "Что такое SpectralDotaFantasy",
     seo_p_about: "Калькулятор фэнтези-лиги The International 2026 — инструмент для игроков компендиума Dota 2. Считает ожидаемые фэнтези-очки для любой связки игроков по официальным правилам Valve, помогает выбрать эмблемы, разряды и свойства для трёх знамён (Основа, Центр, Поддержка) и подбирает тренерский титул с учётом реальной статистики матчей всего сезона 2026.",
     seo_h_scoring: "Как считаются очки фэнтези",
-    seo_p_scoring: "Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за всю групповую стадию. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирическая (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).",
+    seo_p_scoring: "Счёт за одну карту = сумма (базовые очки за показатель × процент эмблемы). Роль из двух игроков (Основа, Поддержка) — среднее их индивидуальных счетов. Счёт матча = сумма двух лучших карт серии — это соответствует Bo3 формату группового этапа TI 2026. Счёт этапа = лучший матч роли за этап. В групповом этапе на знамени три эмблемы, в плей-офф — пять: первые три переносятся, две добавляются. Разряд эмблемы даёт от +10% (I) до +150% (V) к базовым очкам показателя, свойство добавляет условный эффект: Фрактальная (+60% если все разряды разные), Благотворная (+20% соседям), Вампирическая (+50% себе, −10% соседям), Уникальная (+30% если она одна), Дружелюбная (+50% при 3+ дружелюбных на знамени).",
     seo_h_rerolls: "Помощник по замене жетонов",
-    seo_p_rerolls: "На групповой этап TI даётся 40 жетонов замены, ещё 30 добавляется в плей-офф. Каждый жетон меняет одну характеристику эмблемы (показатель, разряд или свойство), либо обновляет всю подборку из трёх предложенных действий («Заменить действия»). Наш помощник считает ожидаемую выгоду каждой замены с учётом остатка жетонов и советует, что применить, а что сохранить. Порядок трат: сначала докрути показатели до нужных, потом свойства, разряды — в самом конце. Дорогие показатели ставь в середину знамени.",
+    seo_p_rerolls: "На групповой этап TI даётся 40 жетонов замены, на плей-офф — 30. Каждый жетон меняет одну характеристику эмблемы (показатель, разряд или свойство), либо обновляет всю подборку из трёх предложенных действий («Заменить действия»). Наш помощник считает ожидаемую выгоду каждой замены с учётом остатка жетонов и советует, что применить, а что сохранить. Порядок трат: сначала докрути показатели до нужных, потом свойства, разряды — в самом конце. Дорогие показатели ставь в середину знамени.",
     seo_h_teams: "Команды на The International 2026",
     seo_p_teams: "На TI 2026 (13-23 августа, Шанхай) играют 16 команд, прошедших через прямые приглашения и региональные квалификации: Team Falcons, Team Liquid, Team Spirit, Iron Wings, BoomBoys, Aurora Gaming, GamerLegion, HULIGANI, LGD Gaming, Nigma Galaxy, OG, TEAM VISION, Team Resilience, Team Yandex, Vici Gaming, Xtreme Gaming. Формат: групповая стадия 13-16 августа — Швейцарка из 16 команд, все матчи Bo3. Топ-3 напрямую в плей-офф в верхнюю сетку, места 4-13 играют отборочный раунд, оттуда ещё 5 команд проходят дальше. Плей-офф 20-23 августа — double elimination для 8 команд, все Bo3, гранд-финал Bo5.",
     seo_h_data: "Источник данных",
