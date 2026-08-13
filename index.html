@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fantasy Calculator · The International 2026 — SpectralDotaFantasy</title>
-<meta name="description" content="Fantasy League calculator for The International 2026 using official Valve rules. 18 stats, emblem qualities and traits, roll assistant, coaching titles. Auto-updated daily. Free, no signup.">
-<meta name="keywords" content="fantasy calculator, dota 2 fantasy, TI 2026 compendium, dota fantasy league, emblem calculator, war banner, roll assistant, coaching title, калькулятор фэнтези дота, фэнтези dota 2, компендиум TI 2026">
+<!-- Дефолт в статичном HTML — русский: весь поисковый трафик идёт по русским
+     запросам, и робот индексирует именно эту версию (localStorage у него нет).
+     На английский переключает скрипт: по выбору пользователя или по языку браузера. -->
+<title>Калькулятор фэнтези Dota 2 | The International 2026 | SpectralDotaFantasy</title>
+<meta name="description" content="Калькулятор фэнтези-лиги The International 2026 по официальным правилам Valve. Calculator Dota 2 Fantasy League. Знамёна плей-офф с 5 эмблемами, 18 показателей, разряды и свойства, помощник по заменам жетонов, тренерский титул. Данные с матчей TI. Бесплатно, без регистрации.">
+<meta name="keywords" content="фэнтези дота 2, фэнтези дота 2 2026, фэнтези дота, калькулятор фэнтези дота 2, помощник фэнтези дота 2, бот для фэнтези дота 2, калькулятор интернешнл 2026, калькулятор замен дота 2, фэнтези лига дота 2, компендиум TI 2026, эмблемы фэнтези дота, знамёна дота 2, жетоны замены дота, разряды эмблем, тренерский титул дота, фэнтези плей-офф TI, spectral dota fantasy, dota 2 fantasy calculator, TI 2026 fantasy, emblem calculator, war banner">
 <meta name="author" content="SpectralDotaFantasy">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <!-- Яндекс подтверждён HTML-файлом yandex_69fbff411a188c99.html в корне домена,
@@ -24,8 +27,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="SpectralDotaFantasy">
-<meta property="og:title" content="Калькулятор фэнтези Dota 2 · The International 2026">
-<meta property="og:description" content="Калькулятор фэнтези лиги Интернешенал 20260. Fantasy League calculator.Считаем очки фэнтези-лиги TI 2026 по правилам Valve. Эмблемы, знамёна, разряды и свойства, помощник по заменам жетонов, тренерский титул.">
+<meta property="og:title" content="Калькулятор фэнтези Dota 2 | The International 2026">
+<meta property="og:description" content="Калькулятор фэнтези-лиги The International 2026. Считаем очки по официальным правилам Valve. Эмблемы, знамёна, разряды и свойства, помощник по заменам жетонов, тренерский титул.">
 <meta property="og:url" content="https://spectralxxx.github.io/dota-fantasy-league-2026/">
 <meta property="og:image" content="https://spectralxxx.github.io/dota-fantasy-league-2026/og-preview.png">
 <meta property="og:image:width" content="1200">
@@ -33,7 +36,7 @@
 <meta property="og:image:alt" content="SpectralDotaFantasy — калькулятор фэнтези TI 2026">
 <!-- Twitter/X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Калькулятор фэнтези Dota 2 · The International 2026">
+<meta name="twitter:title" content="Калькулятор фэнтези Dota 2 | The International 2026">
 <meta name="twitter:description" content="Считаем очки фэнтези-лиги TI 2026 по правилам Valve. Эмблемы, знамёна, разряды и свойства, помощник по заменам.">
 <meta name="twitter:image" content="https://spectralxxx.github.io/dota-fantasy-league-2026/og-preview.png">
 <!-- Структурированные данные для rich snippets -->
@@ -1133,7 +1136,10 @@ function logoTag(team) {
 const st = { stage: "playoff", metric: "avg", pair: "together", rows: "8",
              prefix: "", suffix: "", minG: 40,
              tours: new Set(Object.keys(D.leagues)), banner: {},
-             lang: (localStorage.getItem("lang") || "en"),
+             // Выбор пользователя важнее всего; если его нет — язык браузера;
+             // для робота (нет localStorage, ru в статике) остаётся русский.
+             lang: (localStorage.getItem("lang")
+                    || (/^ru\b/i.test(navigator.language || "") ? "ru" : "en")),
              helper: { role: "core", slots: {}, tokens: 30,
                actions: [{ op: "stat", scope: "red:all" }, { op: "rank", scope: "green:all" }, { op: "rank", scope: "red:last" }] } };
 
@@ -1141,7 +1147,7 @@ const st = { stage: "playoff", metric: "avg", pair: "together", rows: "8",
 const I18N = {
   en: {
     // header + meta
-    doc_title: "Fantasy Calculator · The International 2026 — SpectralDotaFantasy",
+    doc_title: "Fantasy Calculator | The International 2026 | SpectralDotaFantasy",
     doc_desc: "Fantasy League calculator for The International 2026 using official Valve rules. Playoff banners with 5 emblems, 18 stats, tiers and traits, roll assistant, coaching titles. Live TI match data. Free, no signup.",
     eyebrow: "Fantasy League · The International 2026",
     h1_main: 'Fantasy&nbsp;Roster Calculator <span style="color:var(--muted);font-weight:600">·&nbsp;The&nbsp;International&nbsp;2026</span>',
@@ -1309,8 +1315,8 @@ const I18N = {
     seo_credits: "SpectralDotaFantasy · Fantasy Dota 2 calculator · The International 2026 · free and no signup",
   },
   ru: {
-    doc_title: "Калькулятор фэнтези Dota 2 · The International 2026 — SpectralDotaFantasy",
-    doc_desc: "Калькулятор фэнтези-лиги The International 2026 по официальным правилам Valve. Знамёна плей-офф с 5 эмблемами, 18 показателей, разряды и свойства, помощник по заменам жетонов, тренерский титул. Данные с матчей TI. Бесплатно, без регистрации.",
+    doc_title: "Калькулятор фэнтези Dota 2 | The International 2026 | SpectralDotaFantasy",
+    doc_desc: "Калькулятор фэнтези-лиги The International 2026 по официальным правилам Valve. Calculator Dota 2 Fantasy League. Знамёна плей-офф с 5 эмблемами, 18 показателей, разряды и свойства, помощник по заменам жетонов, тренерский титул. Данные с матчей TI. Бесплатно, без регистрации.",
     eyebrow: "Фэнтези-лига · The International 2026",
     h1_main: 'Калькулятор фэнтези&nbsp;Dota&nbsp;2 <span style="color:var(--muted);font-weight:600">·&nbsp;The&nbsp;International&nbsp;2026</span>',
     intro_p: "Выставьте свои эмблемы и проценты — таблица связок обновится сама.",
