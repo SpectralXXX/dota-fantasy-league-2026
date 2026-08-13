@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 
-# Разрешаем всем ботам всё. Отдельно упоминаем Яндекс и Гугл, чтобы точно.
 User-agent: Yandex
 Allow: /
 Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
@@ -9,7 +8,6 @@ Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
 User-agent: Googlebot
 Allow: /
 
-# Sitemap — замени домен на свой (dotafantasy.ru, tvoy-nick.github.io/fantasy и т.п.)
 Sitemap: https://spectralxxx.github.io/dota-fantasy-league-2026/sitemap.xml
 
-Host: spectralxxx.github.io/dota-fantasy-league-2026
+Host: spectralxxx.github.io

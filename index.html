@@ -374,6 +374,42 @@ details.disc[open] .disc-chev{transform:translateY(1px) rotate(-135deg)}
   margin-bottom:-1px;border-radius:5px 5px 0 0;transition:color .12s,background .12s}
 .tabs button:hover{color:var(--muted);background:var(--panel)}
 .tabs button.on{color:var(--text);border-bottom-color:var(--vio)}
+
+/* ── главная фича: вкладка помощника подсвечена фиолетово-розовым ────── */
+.tabs button.hot{
+  position:relative;color:#f3e6ff;
+  background:linear-gradient(135deg,rgba(157,123,240,.22),rgba(232,109,193,.20));
+  border:1px solid rgba(212,120,220,.42);border-bottom-width:2px;
+  border-bottom-color:rgba(232,109,193,.55);
+  box-shadow:0 0 16px -4px rgba(200,110,225,.55), inset 0 1px 0 rgba(255,255,255,.07);
+  text-shadow:0 0 12px rgba(232,109,193,.45);
+  animation:hotPulse 3.2s ease-in-out infinite;
+}
+.tabs button.hot:hover{
+  color:#fff;
+  background:linear-gradient(135deg,rgba(157,123,240,.34),rgba(232,109,193,.32));
+  box-shadow:0 0 22px -3px rgba(200,110,225,.75);
+  animation-play-state:paused;
+}
+/* активная вкладка: подсветка ярче, «живее» */
+.tabs button.hot.on{
+  color:#fff;
+  background:linear-gradient(135deg,rgba(157,123,240,.40),rgba(232,109,193,.38));
+  border-color:rgba(232,109,193,.75);border-bottom-color:#e86dc1;
+  box-shadow:0 0 26px -3px rgba(200,110,225,.85), inset 0 1px 0 rgba(255,255,255,.12);
+  animation:none;
+}
+/* искорка слева от текста */
+.tabs button.hot::before{
+  content:"✦";margin-right:7px;font-size:11px;
+  color:#f0a8dd;text-shadow:0 0 8px rgba(240,168,221,.9);
+  vertical-align:1px;
+}
+@keyframes hotPulse{
+  0%,100%{box-shadow:0 0 14px -5px rgba(200,110,225,.45), inset 0 1px 0 rgba(255,255,255,.07)}
+  50%    {box-shadow:0 0 22px -3px rgba(200,110,225,.8),  inset 0 1px 0 rgba(255,255,255,.10)}
+}
+@media(prefers-reduced-motion:reduce){.tabs button.hot{animation:none}}
 .tabpane[hidden]{display:none}
 .cardspan2{grid-column:span 2}
 @media(max-width:900px){.cardspan2{grid-column:auto}}
@@ -638,7 +674,7 @@ footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--dim);fon
 
   <nav class="tabs" id="tabs">
     <button type="button" data-pane="calc" class="on" data-i18n="tab_calc">Состав</button>
-    <button type="button" data-pane="helper" data-i18n="tab_helper">Помощник по заменам</button>
+    <button type="button" class="hot" data-pane="helper" data-i18n="tab_helper">Помощник по заменам</button>
     <button type="button" data-pane="traits" data-i18n="tab_traits">Свойства</button>
     <button type="button" data-pane="roll" data-i18n="tab_roll">Ценность эмблем</button>
     <button type="button" data-pane="rules" data-i18n="tab_rules">Правила</button>
