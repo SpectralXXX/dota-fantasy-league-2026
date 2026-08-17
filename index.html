@@ -1179,23 +1179,34 @@ function listOutcomes(slots, op, targets) {
     // В группе целей ровно 3 и выбор вырожден; в плей-офф тройка выбирается из пяти,
     // поэтому перебираем сочетания: C(n,2) пар вверх × (n−2) кандидата вниз.
     if (targets.length < 3) return [];
+    const iq = i => RANKS.indexOf(slots[i].q);
+    // Выбираем только среди тех слотов, что РЕАЛЬНО могут измениться: разряд V
+    // поднять некуда, разряд I опустить некуда. Раньше такие слоты считались
+    // кандидатами и давали исходы вида «V→V↑» — их заметил игрок в отзыве,
+    // и они не только выглядели сломанными, но и размывали оценку действия.
+    const upElig = targets.filter(i => iq(i) < RANKS.length - 1);
+    const downElig = targets.filter(i => iq(i) > 0);
+    const pairs = upElig.length >= 2
+      ? upElig.flatMap((a, i) => upElig.slice(i + 1).map(b => [a, b]))
+      : upElig.length === 1 ? [[upElig[0]]] : [[]];
     const picks = [];
-    for (let i = 0; i < targets.length; i++)
-      for (let j = i + 1; j < targets.length; j++)
-        for (const down of targets)
-          if (down !== targets[i] && down !== targets[j]) picks.push([targets[i], targets[j], down]);
+    for (const pair of pairs)
+      for (const down of downElig)
+        if (!pair.includes(down)) picks.push([pair, down]);
+    if (!picks.length) return [];          // менять нечего — действие впустую
     const pickP = 1 / picks.length;
-    const upOptsOf = idx => { const h = RANKS.slice(RANKS.indexOf(slots[idx].q) + 1); return h.length ? h : [slots[idx].q]; };
-    const downOptsOf = idx => { const l = RANKS.slice(0, RANKS.indexOf(slots[idx].q)); return l.length ? l : [slots[idx].q]; };
     const combos = [];
-    for (const [ua, ub, down] of picks) {
-      const oa = upOptsOf(ua), ob = upOptsOf(ub), od = downOptsOf(down);
-      const p = pickP / (oa.length * ob.length * od.length);
-      for (const va of oa) for (const vb of ob) for (const dv of od) {
+    for (const [pair, down] of picks) {
+      const ups = pair.map(i => RANKS.slice(iq(i) + 1));
+      const od = RANKS.slice(0, iq(down));
+      const p = pickP / (ups.reduce((s, o) => s * o.length, 1) * od.length);
+      for (const up of cartesian(ups)) for (const dv of od) {
+        const a = pair.map((i, k) => [i, "q", up[k]]);
+        a.push([down, "q", dv]);
         combos.push({
-          a: [[ua, "q", va], [ub, "q", vb], [down, "q", dv]], p,
-          label: `${named(ua)} ${slots[ua].q}→${va}↑, ${named(ub)} ${slots[ub].q}→${vb}↑`
-            + ` · ${named(down)} ${slots[down].q}→${dv}↓`
+          a, p,
+          label: pair.map((i, k) => `${named(i)} ${slots[i].q}→${up[k]}↑`).join(", ")
+            + (pair.length ? " · " : "") + `${named(down)} ${slots[down].q}→${dv}↓`
         });
       }
     }
@@ -1220,7 +1231,9 @@ function listOutcomes(slots, op, targets) {
       return {
         a: pairs.map(([idx, v]) => [idx, "stat", v]),
         p: 1 / combos.length,
-        label: pairs.map(([idx, v]) => `${named(idx)}: ${S[slots[idx].stat].ru} → ${S[v].ru}`).join(", ")
+        // stName(), а не .ru: иначе в английской версии названия показателей
+        // в списке исходов оставались русскими
+        label: pairs.map(([idx, v]) => `${named(idx)}: ${stName(slots[idx].stat)} → ${stName(v)}`).join(", ")
       };
     });
   }
@@ -1453,8 +1466,13 @@ const I18N = {
       n === 1 ? "" : "s"}) — fill that one in by hand`,
     ocr_fail: "No banners found. A screenshot of the whole Fantasy tab is needed.",
     ocr_error: (m) => `Didn't work out: ${m}`,
-    ocr_no_files: () => "The recogniser files are missing. The folders lib, ort and models "
+    ocr_no_files: "The recogniser files are not responding. The folders lib, ort and models "
       + "must sit next to index.html — check that they were uploaded in full.",
+    ocr_load_failed: "Could not start the recogniser. Reload with Ctrl+Shift+R and try again — "
+      + "a stuck browser cache is the usual culprit.",
+    ocr_old_browser: "This browser is too old to run the recogniser. Open the site in a recent "
+      + "Chrome, Firefox or Edge. The rest of the calculator works here just fine.",
+    ocr_tech: (m) => `Technical reason: ${m}`,
     banx_note_friendly: "Friendly is needed on at least three emblems of the banner",
     banx_note_fractal3: "all three tiers must be different",
     banx_note_fractal5: "all five tiers must be different — that means exactly I, II, III, IV, V",
@@ -1668,8 +1686,13 @@ const I18N = {
       plural(n, "эмблема", "эмблемы", "эмблем")}) — заполни его руками`,
     ocr_fail: "Не нашёл знамён. Нужен скриншот вкладки «Фэнтези» целиком.",
     ocr_error: (m) => `Не получилось: ${m}`,
-    ocr_no_files: () => "Не нашлись файлы распознавателя. Рядом с index.html должны "
-      + "лежать папки lib, ort и models — проверь, что они загружены целиком.",
+    ocr_no_files: "Файлы распознавателя не отвечают. Рядом с index.html должны лежать "
+      + "папки lib, ort и models — проверь, что они загружены целиком.",
+    ocr_load_failed: "Не удалось запустить распознавание. Обнови страницу с Ctrl+Shift+R "
+      + "и попробуй ещё раз — чаще всего виноват застрявший кеш браузера.",
+    ocr_old_browser: "Этот браузер не умеет запускать распознаватель — он слишком старый. "
+      + "Открой сайт в свежем Chrome, Firefox или Edge. Остальной калькулятор работает и здесь.",
+    ocr_tech: (m) => `Техническая причина: ${m}`,
     banx_note_friendly: "дружелюбная нужна минимум на трёх эмблемах знамени",
     banx_note_fractal3: "все три разряда должны отличаться",
     banx_note_fractal5: "все пять разрядов должны отличаться — то есть ровно I, II, III, IV, V",
@@ -3043,6 +3066,20 @@ const render = () => { drawBanners(); drawResults(); drawTitle(); };
 
   /* ── запуск ───────────────────────────────────────────────────── */
   let SVC = null, busy = false;
+  // Import-карты: Chrome 89+, Firefox 108+, Safari 16.4+. Без них голое имя
+  // «onnxruntime-web» не разрешается и модуль не грузится вовсе.
+  const importMapOK = () => {
+    try { return !HTMLScriptElement.supports || HTMLScriptElement.supports("importmap"); }
+    catch (e) { return true; }
+  };
+  // Живы ли файлы рядом с сайтом. Берём самый лёгкий — словарь на 2 КБ.
+  async function assetsReachable() {
+    try {
+      const r = await fetch(new URL("./models/dict-cyrillic.txt", location.href),
+                            {cache: "no-store"});
+      return r.ok;
+    } catch (e) { return false; }
+  }
   async function service() {
     if (SVC) return SVC;
     busyMsg(t("ocr_loading"), t("ocr_loading_sub"));
@@ -3083,6 +3120,8 @@ const render = () => { drawBanners(); drawResults(); drawTitle(); };
 
   async function handle(file) {
     if (busy || !file || !/^image\//.test(file.type)) return;
+    // Старый браузер отсекаем сразу, не качая 25 МБ впустую
+    if (!importMapOK()) { say(`<span class="bad">${t("ocr_old_browser")}</span>`); return; }
     busy = true; drop.classList.add("busy");
     try {
       const img = new Image();
@@ -3187,10 +3226,14 @@ const render = () => { drawBanners(); drawResults(); drawTitle(); };
         + `<span class="note">${t("ocr_verify")}</span>`);
     } catch (err) {
       console.error(err);
-      // Самая вероятная причина на живом сайте — рядом с index.html не залили
-      // папки распознавателя. Пишем прямо, а не «Failed to fetch module».
-      const missing = /import|fetch|404|backend/i.test(String(err && err.message));
-      say(`<span class="bad">${t(missing ? "ocr_no_files" : "ocr_error", err.message || err)}</span>`);
+      // НЕ угадываем причину по тексту ошибки: раньше тут стояла проверка на
+      // слова import/fetch, и она объявляла «папок нет» при любой сетевой
+      // осечке и на старом браузере. Причину теперь выясняем, а не сочиняем.
+      let key = "ocr_load_failed";
+      if (!importMapOK()) key = "ocr_old_browser";
+      else if (!(await assetsReachable())) key = "ocr_no_files";
+      say(`<span class="bad">${t(key)}</span>`
+        + `<span class="note">${t("ocr_tech", String(err && err.message || err).slice(0, 160))}</span>`);
     } finally { busy = false; drop.classList.remove("busy"); }
   }
 
